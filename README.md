@@ -1,0 +1,4 @@
+THIS REPO IS FOR OUR SHELL PROJECT
+ITS A USER INTERFACE
+
+by: Andres Cheung & Nick Uchida
