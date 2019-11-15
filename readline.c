@@ -9,8 +9,12 @@ int main()
 	size_t n;
 	size_t in;
 
-	printf("$ ");
-	in = getline(&buffer,&n,stdin);
-	printf("$ %s", buffer);
+	while (1)
+	{
+		write (STDOUT_FILENO, "$ ", 2);
+		in = getline(&buffer,&n,stdin);
+		write(STDOUT_FILENO, buffer, sizeof(char *));
+	}
+
 	return(0);
 }
