@@ -54,6 +54,10 @@ char *strtokarray(char *str)
 	return (singletoken);
 }
 
+/**
+ *main - entry point for the shell
+ *Return - always 0
+ */
 int main()
 {
 	char *buffer;
