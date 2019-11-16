@@ -41,14 +41,14 @@ char *strtokarray(char *str)
 {
 	char *token;
 	char *singletoken;
-	int len;
+	size_t len = 0;
 	int counter;
 
 	len = _strlen(str);
 	token = malloc(sizeof(char) * len);
 	token = strtok(str, ", ");
 
-	write(STDOUT_FILENO, token, 10);
+	write(STDOUT_FILENO, token, len);
 	counter++;
 
 	return (singletoken);
