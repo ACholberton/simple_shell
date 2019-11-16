@@ -57,8 +57,9 @@ char *strtokarray(char *str)
 int main()
 {
 	char *buffer;
-	size_t n;
+	size_t n = 0;
 	size_t in;
+	int i;
 
 	buffer = malloc(n * sizeof(char));
 
@@ -66,9 +67,9 @@ int main()
 	{
 		write(STDOUT_FILENO, "$ ", 2);
 		in = getline(&buffer,&n,stdin);
-		write(STDOUT_FILENO, strtokarray(buffer), n);
+		for (i = 0; buffer[i] != '\0'; i++)
+			write(STDOUT_FILENO, strtokarray(buffer), i);
 		putchar('\n');
 	}
-
 	return(0);
 }
