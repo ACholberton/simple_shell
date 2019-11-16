@@ -48,8 +48,9 @@ void *strtokarray(char *str)
 
 	while (token != NULL)
 	{
-	write(STDOUT_FILENO, token, len);
-	token = strtok(NULL, ", ");
+		write(STDOUT_FILENO, token, _strlen(token));
+		write(STDOUT_FILENO, "\n", 1);
+		token = strtok(NULL, ", ");
 	}
 	free(token);
 }
