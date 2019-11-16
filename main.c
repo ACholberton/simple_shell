@@ -37,21 +37,21 @@ char *_strncpy(char *dest, char *src, int n)
 	return (dest);
 }
 
-char *strtokarray(char *str)
+void *strtokarray(char *str)
 {
 	char *token;
-	char *singletoken;
 	size_t len = 0;
-	int counter;
 
 	len = _strlen(str);
 	token = malloc(sizeof(char) * len);
 	token = strtok(str, ", ");
 
+	while (token != NULL)
+	{
 	write(STDOUT_FILENO, token, len);
-	counter++;
-
-	return (singletoken);
+	token = strtok(NULL, ", ");
+	}
+	free(token);
 }
 
 /**
