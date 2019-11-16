@@ -46,7 +46,7 @@ char *strtokarray(char *str)
 
 	len = _strlen(str);
 	token = malloc(sizeof(char) * len);
-	token = strtok(str, " ");
+	token = strtok(str, ", ");
 
 	write(STDOUT_FILENO, token, 10);
 	counter++;
