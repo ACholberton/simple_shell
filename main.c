@@ -25,7 +25,6 @@ int _strlen(char *s)
  * @n: size
  * Return: copied string
  */
-
 char *_strncpy(char *dest, char *src, int n)
 {
 	int i;
@@ -37,6 +36,11 @@ char *_strncpy(char *dest, char *src, int n)
 	return (dest);
 }
 
+/**
+ * strtokarray - splits a string and returns array of each word
+ * @str: the string being split
+ * Return: split string
+ */
 char *strtokarray(char *str)
 {
 	char *token;
@@ -46,7 +50,7 @@ char *strtokarray(char *str)
 
 	len = _strlen(str);
 	token = malloc(sizeof(char) * len);
-	token = strtok(str, ", ");
+	token = strtok(str, " ");
 
 	write(STDOUT_FILENO, token, 10);
 	counter++;
@@ -67,7 +71,6 @@ int main()
 		write(STDOUT_FILENO, "$ ", 2);
 		in = getline(&buffer,&n,stdin);
 		write(STDOUT_FILENO, strtokarray(buffer), n);
-		putchar('\n');
 	}
 
 	return(0);
