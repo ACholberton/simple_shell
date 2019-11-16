@@ -6,15 +6,18 @@
 int main()
 {
 	char *buffer = NULL;
-	size_t n;
-	size_t in;
+	size_t n = 0;
+	ssize_t in;
 
 	while (1)
 	{
-		write (STDOUT_FILENO, "$ ", 2);
+ 		write (STDOUT_FILENO, "$ ", 2);
 		in = getline(&buffer,&n,stdin);
-		write(STDOUT_FILENO, buffer, sizeof(char *));
+		write(STDOUT_FILENO, buffer, in);
 	}
-
+	if (buffer)
+	{
+		free(buffer);
+	}
 	return(0);
 }
