@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
 int _strlen(char *s)
 {
@@ -18,6 +19,8 @@ int main (void)
 	char *buffer = NULL;
 	char *token;
 	size_t bufflen = 0;
+	char **str;
+	size_t counter = 0;
 
 	while (1)
 	{
@@ -25,11 +28,19 @@ int main (void)
 		getline(&buffer, &bufflen, stdin);
 
 		token = strtok(buffer, " ");
+
+		str = malloc(sizeof(char *) * (counter + 1));
 		while (token != NULL)
 		{
+			str[counter] = token;
 			write(STDOUT_FILENO, token, _strlen(token));
 			token = strtok(NULL, " ");
 		}
+		if (fork() == 0)
+			execve(str[0], str,  NULL);
+		else
+			wait(NULL);
+
 		free(token);
 	}
 	return (0);
