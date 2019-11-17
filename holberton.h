@@ -10,7 +10,8 @@
 
 typedef struct commands
 {
-	char *argv = {"/bin/ls", NULL};
-} command;
+	char *p;
+	char **argv(*command)(alias);
+} command_t;
 
 #endif
