@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include "holberton.h"
 
 int _strlen(char *s)
 {
@@ -35,6 +30,7 @@ int main (void)
 			str[counter] = token;
 			write(STDOUT_FILENO, token, _strlen(token));
 			token = strtok(NULL, " ");
+			counter++;
 		}
 		if (fork() == 0)
 			execve(str[0], str,  NULL);
