@@ -9,7 +9,7 @@ int _strlen(char *s)
 	return (i);
 }
 
-int main (void)
+int main (int ac, char **av, char **env)
 {
 	char *buffer = NULL;
 	char *token;
@@ -23,20 +23,30 @@ int main (void)
 		getline(&buffer, &bufflen, stdin);
 
 		token = strtok(buffer, " ");
-
+		while(token != NULL)
+		{
+			token = strtok(NULL, " ");
+			counter++;
+		}
 		str = malloc(sizeof(char *) * (counter + 1));
+		token = strtok(buffer, " ");
 		while (token != NULL)
 		{
 			str[counter] = token;
 			write(STDOUT_FILENO, token, _strlen(token));
+			if (fork() == 0)
+				execve(str[0], str, NULL);
+			else
+				wait(NULL);
 			token = strtok(NULL, " ");
 			counter++;
 		}
+/**
 		if (fork() == 0)
 			execve(str[0], str,  NULL);
 		else
 			wait(NULL);
-
+*/
 		free(token);
 	}
 	return (0);
