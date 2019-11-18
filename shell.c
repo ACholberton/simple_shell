@@ -60,13 +60,19 @@ int _strlen(char *s)
 	return (i);
 }
 
-int main (int ac, char **av, char **env)
+/**
+ *main - is the entry point
+ *@ac:
+ *@av:
+ *@env:
+ *Return: always 0
+ */
+int main(int ac, char **av)
 {
 	char *buffer = NULL;
 	char *token;
 	size_t bufflen = 0;
-	char **str;
-	size_t counter = 0, i = 0, j = 0;
+	size_t i = 0, j = 0;
 	char *buffer_cpy = NULL;
 
 	while (1)
@@ -75,7 +81,7 @@ int main (int ac, char **av, char **env)
 		getline(&buffer, &bufflen, stdin); //prompt//
 
 		for (; buffer[i] != '\0'; i++)
-		{
+  		{
 			if (buffer[i] == '\n')
 				buffer[i] = '\0';
 		}
@@ -84,22 +90,23 @@ int main (int ac, char **av, char **env)
 		while(token != NULL)
 		{
 			token = strtok(NULL, " ");
-			counter++;
+			ac++;
 		}
-		str = malloc(sizeof(char *) * (counter + 1));
+		av = malloc(sizeof(char *) * (ac + 1));
 		token = strtok(buffer, " ");
 		while (token != NULL)
 		{
-			str[j] = token;
+			av[j] = token;
 			token = strtok(NULL, " ");
 			j++;
 		}
-		str[counter] = NULL;
+		av[ac] = NULL;
 		if (fork() == 0)
-			execve(str[0], str,  NULL);
+			execve(av[0], av,  NULL);
 		else
 			wait(NULL);
 		free(token);
+		free(av);
 	}
 	return (0);
 }
