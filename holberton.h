@@ -8,10 +8,4 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-typedef struct commands
-{
-	char *p;
-	char **argv(*command)(alias);
-} command_t;
-
 #endif
