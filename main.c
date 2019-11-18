@@ -41,6 +41,10 @@ void *strtokarray(char *str)
 {
 	char *token;
 	size_t len = 0;
+<<<<<<< HEAD
+=======
+	int counter = 0;
+>>>>>>> exercises
 
 	len = _strlen(str);
 	token = malloc(sizeof(char) * len);
@@ -48,9 +52,14 @@ void *strtokarray(char *str)
 
 	while (token != NULL)
 	{
+<<<<<<< HEAD
 		write(STDOUT_FILENO, token, _strlen(token));
 		write(STDOUT_FILENO, "\n", 1);
 		token = strtok(NULL, ", ");
+=======
+	write(STDOUT_FILENO, token, len);
+	token = strtok(NULL, ", ");
+>>>>>>> exercises
 	}
 	free(token);
 }
@@ -62,14 +71,25 @@ void *strtokarray(char *str)
 int main()
 {
 	char *buffer;
+<<<<<<< HEAD
 	size_t n = 0;
 	ssize_t in;
+=======
+	char *token;
+	size_t n = 0;
+	ssize_t in;
+	int len;
+>>>>>>> exercises
 
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 2);
 		in = getline(&buffer,&n,stdin);
+<<<<<<< HEAD
 		write(STDOUT_FILENO, strtokarray(buffer), in);
+=======
+		write(STDOUT_FILENO, buffer, in);
+>>>>>>> exercises
 	}
 
 	return(0);
