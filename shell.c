@@ -71,17 +71,20 @@ int main(int ac, char **av)
 {
 	char *buffer = NULL;
 	char *token;
+	char **holder;
 	size_t bufflen = 0;
-	size_t i = 0, j = 0;
+	size_t i, j;
+	int count;
 	char *buffer_cpy = NULL;
 
 	while (1)
 	{
+		i = 0, j = 0, count = 0;
 		write(STDOUT_FILENO, "$ ", 2);
 		getline(&buffer, &bufflen, stdin); //prompt//
 
 		for (; buffer[i] != '\0'; i++)
-  		{
+		{
 			if (buffer[i] == '\n')
 				buffer[i] = '\0';
 		}
@@ -90,23 +93,27 @@ int main(int ac, char **av)
 		while(token != NULL)
 		{
 			token = strtok(NULL, " ");
-			ac++;
+			count++;
 		}
-		av = malloc(sizeof(char *) * (ac + 1));
+		holder = malloc(sizeof(char *) * (count + 1));
 		token = strtok(buffer, " ");
 		while (token != NULL)
 		{
-			av[j] = token;
+			holder[j] = token;
 			token = strtok(NULL, " ");
 			j++;
 		}
-		av[ac] = NULL;
+		holder[count] = NULL;
 		if (fork() == 0)
-			execve(av[0], av,  NULL);
+			execve(holder[0], holder,  NULL);
 		else
 			wait(NULL);
-		free(token);
-		free(av);
+
+		free(holder);
+		free(buffer_cpy);
+		free(buffer);
+		buffer = NULL;
+		buffer_cpy = NULL;
 	}
 	return (0);
 }
