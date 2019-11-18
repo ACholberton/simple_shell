@@ -8,4 +8,9 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
+char *_strdup(char *str);
+
+
 #endif
