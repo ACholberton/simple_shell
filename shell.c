@@ -66,7 +66,7 @@ int main (int ac, char **av, char **env)
 	char *token;
 	size_t bufflen = 0;
 	char **str;
-	size_t counter = 0, i = 0;
+	size_t counter = 0, i = 0, j = 0;
 	char *buffer_cpy = NULL;
 
 	while (1)
@@ -75,10 +75,10 @@ int main (int ac, char **av, char **env)
 		getline(&buffer, &bufflen, stdin); //prompt//
 
 		for (; buffer[i] != '\0'; i++)
+		{
 			if (buffer[i] == '\n')
-			{
 				buffer[i] = '\0';
-			}
+		}
 		buffer_cpy = _strdup(buffer);
 		token = strtok(buffer_cpy, " ");
 		while(token != NULL)
@@ -90,12 +90,11 @@ int main (int ac, char **av, char **env)
 		token = strtok(buffer, " ");
 		while (token != NULL)
 		{
-			str[counter] = token;
-			write(STDOUT_FILENO, token, _strlen(token));
+			str[j] = token;
 			token = strtok(NULL, " ");
-			counter++;
+			j++;
 		}
-		str[i] = NULL;
+		str[counter] = NULL;
 		if (fork() == 0)
 			execve(str[0], str,  NULL);
 		else
