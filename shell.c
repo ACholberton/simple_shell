@@ -69,11 +69,8 @@ int _strlen(char *s)
  */
 int main(int ac, char **av)
 {
-	char *buffer = NULL;
-	char *token;
-	size_t bufflen = 0;
-	size_t i, j;
-	char *buffer_cpy = NULL;
+	char *buffer = NULL, *buffer_cpy = NULL, *token;
+	size_t bufflen = 0, i, j;
 
 	while (1)
 	{
@@ -88,18 +85,16 @@ int main(int ac, char **av)
 		}
 		buffer_cpy = _strdup(buffer);
 		token = strtok(buffer_cpy, " ");
-		while(token != NULL)
+		for (; token != NULL; ac++)
 		{
 			token = strtok(NULL, " ");
-			ac++;
 		}
 		av = malloc(sizeof(char *) * (ac + 1));
 		token = strtok(buffer, " ");
-		while (token != NULL)
+		for (; token != NULL; j++)
 		{
 			av[j] = token;
 			token = strtok(NULL, " ");
-			j++;
 		}
 		av[ac] = NULL;
 		if (fork() == 0)
