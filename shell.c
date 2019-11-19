@@ -76,8 +76,7 @@ int main(int ac, char **av)
 	{
 		i = 0, j = 0, ac = 0;
 		write(STDOUT_FILENO, "$ ", 2);
-		getline(&buffer, &bufflen, stdin); //prompt//
-
+		getline(&buffer, &bufflen, stdin);
 		for (; buffer[i] != '\0'; i++)
 		{
 			if (buffer[i] == '\n')
@@ -101,7 +100,6 @@ int main(int ac, char **av)
 			execve(av[0], av,  NULL);
 		else
 			wait(NULL);
-
 		free(av);
 		free(buffer_cpy);
 		free(buffer);
