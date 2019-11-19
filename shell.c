@@ -67,14 +67,14 @@ int _strlen(char *s)
  *@env:
  *Return: always 0
  */
-int main(int ac, char **av)
+int main(void)
 {
-	char *buffer = NULL, *buffer_cpy = NULL, *token;
-	size_t bufflen = 0, i, j;
+	char *buffer = NULL, *buffer_cpy = NULL, *token, **holder;
+	size_t bufflen = 0, i, j, counter;
 
 	while (1)
 	{
-		i = 0, j = 0, ac = 0;
+		i = 0, j = 0, counter = 0;
 		write(STDOUT_FILENO, "$ ", 2);
 		getline(&buffer, &bufflen, stdin);
 		for (; buffer[i] != '\0'; i++)
@@ -84,23 +84,23 @@ int main(int ac, char **av)
 		}
 		buffer_cpy = _strdup(buffer);
 		token = strtok(buffer_cpy, " ");
-		for (; token != NULL; ac++)
+		for (; token != NULL; counter++)
 		{
 			token = strtok(NULL, " ");
 		}
-		av = malloc(sizeof(char *) * (ac + 1));
+		holder = malloc(sizeof(char *) * (counter + 1));
 		token = strtok(buffer, " ");
 		for (; token != NULL; j++)
 		{
-			av[j] = token;
+			holder[j] = token;
 			token = strtok(NULL, " ");
 		}
-		av[ac] = NULL;
+		holder[counter] = NULL;
 		if (fork() == 0)
-			execve(av[0], av,  NULL);
+			execve(holder[0], holder,  NULL);
 		else
 			wait(NULL);
-		free(av);
+		free(holder);
 		free(buffer_cpy);
 		free(buffer);
 		buffer = NULL;
