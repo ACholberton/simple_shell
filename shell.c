@@ -32,6 +32,7 @@ int main(void)
 		{
 			write(STDOUT_FILENO, "cya", 4);
 			_putchar('\n');
+			free(buffer);
 			exit(0);
 		}
 		command = tokens(buffer);
