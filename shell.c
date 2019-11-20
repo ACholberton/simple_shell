@@ -12,6 +12,11 @@ int main(void)
 	while (1)
 	{
 		i = 0;
+		if (!buffer)
+		{
+			perror("Invalid task, try again");
+			exit(0);
+		}
 
 		write(STDOUT_FILENO, "$ ", 2);
 		getline(&buffer, &bufflen, stdin);
