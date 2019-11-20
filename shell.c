@@ -12,12 +12,12 @@ int main(void)
 	while (1)
 	{
 		i = 0;
-/*		if (!buffer)
+		if (buffer != NULL)
 		{
 			perror("Invalid task, try again");
-			exit(0);
+			exit(1);
 		}
-*/
+
 		write(STDOUT_FILENO, "$ ", 2);
 		getline(&buffer, &bufflen, stdin);
 
