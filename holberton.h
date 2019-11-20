@@ -11,7 +11,7 @@
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
-char *findpath(char *str);
+char *findpath(char *dup_copy);
 char **tokens(char *str);
 int _putchar(char c);
 

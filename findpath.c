@@ -2,15 +2,13 @@
 
 extern char **environ;
 
-char *findpath()
+char *findpath(char *dup_copy)
 {
-	char *dup_copy;
-	char *location;
 	char *LV;
 	char *RV;
-	size_t i;
+	size_t i = 0;
 
-	while (environ)
+	while (environ[i])
 	{
 		dup_copy = _strdup(environ[i]);
 		LV = strtok(dup_copy, "=");
@@ -25,5 +23,5 @@ char *findpath()
 		}
 		i++;
 	}
-	return (location);
+	return (dup_copy);
 }
