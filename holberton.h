@@ -13,5 +13,6 @@ char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 char *findpath(char *str);
 char **tokens(char *str);
+int _putchar(char c);
 
 #endif
