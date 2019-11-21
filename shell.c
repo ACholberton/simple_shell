@@ -1,10 +1,11 @@
 #include "holberton.h"
 /**
  *main - is the entry point
-   *Return: always 0
+ *Return: always 0
  */
-int main(void)
+int main(int ac, char **av, char **env)
 {
+	(void) ac; (void) av;
 	char *buffer = NULL;
 	char **command;
 	size_t bufflen = 0, i;
@@ -26,7 +27,7 @@ int main(void)
 		}
 		if (strcmp(buffer, "env") == 0)
 		{
-			printenviron();
+			printenv(env);
 		}
 		if (strcmp(buffer, "exit") == 0)
 		{
