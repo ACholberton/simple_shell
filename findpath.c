@@ -1,27 +1,28 @@
 #include "holberton.h"
 
-extern char **environ;
-
-char *findpath(char *dup_copy)
+void *findpath(char *input, char **env)
 {
-	char *LV;
-	char *RV;
+	char *left, *right, *bin;
 	size_t i = 0;
+
 
 	while (environ[i])
 	{
-		dup_copy = _strdup(environ[i]);
-		LV = strtok(dup_copy, "=");
-		RV = strtok(NULL, "=");
-		if (strcmp(LV, "PATH") == 0)
+		env_copy = _strdup(environ[i]);
+		left = strtok(env_copy, "=");
+		right = strtok(NULL, "=");
+		if (strcmp(left, "PATH") == 0)
 		{
-			while (RV)
+
+			bins = right
+			while (bins)
 			{
-				strtok(RV, ":");
 				strtok(NULL, ":");
 			}
 		}
 		i++;
+		free(left);
+		free(right);
 	}
 	return (dup_copy);
 }
