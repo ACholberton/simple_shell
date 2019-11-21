@@ -8,11 +8,8 @@ int main(int ac, char **av, char **env)
 	char *buffer = NULL;
 	char **command;
 	size_t bufflen = 0, i;
-<<<<<<< HEAD
 	int status = 1;
-=======
 	(void) ac, (void) av;
->>>>>>> 9784b05120a580699f096ab643d38d3b1016b467
 
 	while (status)
 	{
