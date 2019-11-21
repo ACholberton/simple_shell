@@ -41,6 +41,7 @@ int main(int ac, char **av, char **env)
 			}
 			}*/
 		command = tokens(buffer);
+		findpath(command, env);
 
 		if (fork() == 0)
 			execve(command[0], command,  NULL);

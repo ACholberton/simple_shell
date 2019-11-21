@@ -1,8 +1,8 @@
 #include "holberton.h"
 
-void *findpath(char *input, char **env)
+int *findpath(char *input, char **env)
 {
-	char *left, *right, *bins = NULL, *token, *path = NULL;
+	char *left, *right, *bins = NULL, *token, **path = NULL;
 	size_t i = 0;
 
 
@@ -18,11 +18,11 @@ void *findpath(char *input, char **env)
 
 			path = malloc(sizeof(char *) * _strlen(token));
 
-			path = _strcat(bins, "/");
-			path = _strcat(path, input);
-			path = _strcat(path, "\0");
+			bins = _strcat(bins, "/");
+			path = _strcat(bins, input);
+			path = _strcat(*path, "\0");
 
-			if (access(path, F_OK) == 0)
+			if (access(*path, F_OK) == 0)
 			{
 				if (fork() == 0)
 					execve(path[0], path, NULL);
@@ -35,4 +35,5 @@ void *findpath(char *input, char **env)
 		free(left);
 		free(right);
 	}
+	return (0);
 }
