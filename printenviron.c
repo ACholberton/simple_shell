@@ -1,16 +1,14 @@
 #include "holberton.h"
 
-extern char **environ;
-
-void printenviron(void)
+void printenv(char **env)
 {
 	size_t i = 0;
 	size_t len;
 
-	while (environ[i])
+	while (env[i])
 	{
-		len = _strlen(environ[i]);
-		write(STDOUT_FILENO, environ[i], len);
+		len = _strlen(env[i]);
+		write(STDOUT_FILENO, env[i], len);
 		_putchar('\n');
 		i++;
 	}
