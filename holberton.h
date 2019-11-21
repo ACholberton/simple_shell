@@ -11,8 +11,9 @@
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
-char *findpath(char *dup_copy);
+char *findenv(char *path);
 char **tokens(char *str);
 int _putchar(char c);
+void printenv(char **env);
 
 #endif
