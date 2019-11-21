@@ -9,8 +9,9 @@ int main(int ac, char **av, char **env)
 	char *buffer = NULL;
 	char **command;
 	size_t bufflen = 0, i;
+	int status = 1;
 
-	while (1)
+	while (status)
 	{
 		i = 0;
 		if (buffer != NULL)
@@ -29,13 +30,16 @@ int main(int ac, char **av, char **env)
 		{
 			printenv(env);
 		}
-		if (strcmp(buffer, "exit") == 0)
+/*		if (strcmp(buffer, "exit") == 0)
 		{
 			write(STDOUT_FILENO, "cya", 4);
 			_putchar('\n');
-			free(buffer);
-			exit(0);
-		}
+			while (pid != 1)
+			{
+				exit(status);
+				free(buffer);
+			}
+			}*/
 		command = tokens(buffer);
 
 		if (fork() == 0)
