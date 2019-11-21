@@ -1,6 +1,6 @@
 #include "holberton.h"
 
-int *findpath(char *input, char **env)
+char **findpath(char *input, char **env)
 {
 	char *left, *right, *bins = NULL, *token, **path = NULL;
 	size_t i = 0;
@@ -11,7 +11,7 @@ int *findpath(char *input, char **env)
 	if (_strcmp(left, "PATH") == 0)
 	{
 		bins = right;
-		token = strtok(bins, ":");
+ 		token = strtok(bins, ":");
 		while (bins)
 		{
 			token = strtok(NULL, ":");
