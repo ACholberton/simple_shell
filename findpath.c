@@ -1,39 +1,44 @@
 #include "holberton.h"
 
-char **findpath(char *input, char **env)
+int findpath(char **command, char **env)
 {
-	char *left, *right, *bins = NULL, *token, **path = NULL;
-	size_t i = 0;
+	char *left = NULL, *right = NULL, *bins, *token, *envdup, *path = NULL;
+	size_t i, j, len1, len2;
 
-
-	left = strtok(*env, "=");
-	right = strtok(NULL, "=");
-	if (_strcmp(left, "PATH") == 0)
+	for (i = 0; env[i]; i++)
 	{
-		bins = right;
- 		token = strtok(bins, ":");
-		while (bins)
+		envdup = _strdup(*env);
+		left = strtok(envdup, "=");
+
+		right = strtok(NULL, "=");
+
+		if (_strcmp(left, "PATH") == 0)
 		{
-			token = strtok(NULL, ":");
-
-			path = malloc(sizeof(char *) * _strlen(token));
-
-			bins = _strcat(bins, "/");
-			path = _strcat(bins, input);
-			path = _strcat(*path, "\0");
-
-			if (access(*path, F_OK) == 0)
+			printf("test");
+			bins = right;
+			token = strtok(bins, ":");
+			for (j = 0; bins; j++)
 			{
-				if (fork() == 0)
-					execve(path[0], path, NULL);
+				token = strtok(NULL, ":");
+				len1 = _strlen(token);
+				len2 = _strlen(command[0]);
+
+				path = malloc(sizeof(char *) * (len1 + len2));
+
+				_strcat(path, bins);
+				_strcat(path, "/");
+				_strcat(path, *command);
+				_strcat(path, "\0");
+
+				if (access(path, X_OK) == 0)
+					execve(command[0], command, NULL);
 				else
 					wait(NULL);
 			}
 		}
+		env++;
+		free(path);
 		path = NULL;
-		i++;
-		free(left);
-		free(right);
 	}
 	return (0);
 }
