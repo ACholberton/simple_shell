@@ -15,11 +15,6 @@ int main(int ac, char **av, char **env)
 	while (status)
 	{
 		i = 0;
-		if (buffer != NULL)
-		{
-			perror("Invalid task, try again");
-			exit(1);
-		}
 		write(STDOUT_FILENO, "$ ", 2);
 		getline(&buffer, &bufflen, stdin);
 		for (; buffer[i] != '\0'; i++)
@@ -38,23 +33,17 @@ int main(int ac, char **av, char **env)
 			exit(EXIT_SUCCESS);
 			free(buffer);
 		}
-
 		command = tokens(buffer);
 		new = findpath(command, env);
-		if (new)
+/*		if (buffer == new)
 		{
-			if (fork() == 0)
-				execve(new, command,  NULL);
-			else
-				wait(NULL);
-		}
+			perror(*command);
+			}*/
+		if (fork() == 0)
+			execve(new, command,  NULL);
 		else
-		{
-			if(fork() == 0)
-				execve(command[0], command, NULL);
-			else
-				wait(NULL);
-		}
+			wait(NULL);
+
 		free(buffer);
 		buffer = NULL;
 	}

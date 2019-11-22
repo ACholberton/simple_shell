@@ -3,7 +3,7 @@
 char *findpath(char **command, char **env)
 {
 	char *left = NULL, *right = NULL, *bins, *token, *envdup, *path = NULL;
-	size_t i, j, len1, len2;
+	size_t i, j, len1 = 0, len2 = 0;
 	/*int a;*/
 
 	for (i = 0; env[i]; i++)
@@ -47,5 +47,5 @@ char *findpath(char **command, char **env)
 		free(path);
 		path = NULL;
 	}
-	return (0);
+	return (*command);
 }
