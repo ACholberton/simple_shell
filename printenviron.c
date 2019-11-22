@@ -1,6 +1,6 @@
 #include "holberton.h"
 
-void printenv(char **env)
+void printenvi(char **env)
 {
 	size_t i = 0;
 	size_t len;
