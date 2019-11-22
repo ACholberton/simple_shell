@@ -14,7 +14,7 @@ int _strlen(char *s);
 int _putchar(char c);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
-void printenv(char **env);
+void printenvi(char **env);
 char **tokens(char *str);
 char *_strcat(char *dest, char *src);
 char *findpath(char **command, char **env);
