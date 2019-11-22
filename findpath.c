@@ -1,10 +1,10 @@
 #include "holberton.h"
 
-int findpath(char **command, char **env)
+char *findpath(char **command, char **env)
 {
 	char *left = NULL, *right = NULL, *bins, *token, *envdup, *path = NULL;
 	size_t i, j, len1, len2;
-	int a;
+	/*int a;*/
 
 	for (i = 0; env[i]; i++)
 	{
@@ -30,18 +30,17 @@ int findpath(char **command, char **env)
 				_strcat(path, *command);
 				_strcat(path, "\0");
 
-				a = fork();
+				/*a = fork();*/
 				if (access(path, X_OK) == 0)
 				{
-					if (a == 0)
+					return (path);
+					/*	if (a == 0)
 					{
 						execve(path, command, NULL);
-						break;
 					}
 					else
-						wait(NULL);
+					wait(NULL);*/
 				}
-
 			}
 		}
 		env++;

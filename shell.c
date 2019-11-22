@@ -7,6 +7,7 @@ int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL;
 	char **command;
+	char *new;
 	size_t bufflen = 0, i;
 	int status = 1;
 	(void) ac, (void) av;
@@ -39,13 +40,21 @@ int main(int ac, char **av, char **env)
 		}
 
 		command = tokens(buffer);
-		findpath(command, env);
-
-		if (fork() == 0)
-			execve(command[0], command,  NULL);
+		new = findpath(command, env);
+		if (new)
+		{
+			if (fork() == 0)
+				execve(new, command,  NULL);
+			else
+				wait(NULL);
+		}
 		else
-			wait(NULL);
-
+		{
+			if(fork() == 0)
+				execve(command[0], command, NULL);
+			else
+				wait(NULL);
+		}
 		free(buffer);
 		buffer = NULL;
 	}
