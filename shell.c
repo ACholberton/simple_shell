@@ -30,18 +30,16 @@ int main(int ac, char **av, char **env)
 		{
 			printenv(env);
 		}
-/*		if (strcmp(buffer, "exit") == 0)
+		if (strcmp(buffer, "exit") == 0)
 		{
 			write(STDOUT_FILENO, "cya", 4);
 			_putchar('\n');
-			while (pid != 1)
-			{
-				exit(status);
-				free(buffer);
-			}
-			}*/
+			exit(EXIT_SUCCESS);
+			free(buffer);
+		}
+
 		command = tokens(buffer);
-		findpath(*command, env);
+		findpath(command, env);
 
 		if (fork() == 0)
 			execve(command[0], command,  NULL);
