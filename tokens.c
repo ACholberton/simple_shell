@@ -2,7 +2,7 @@
 
 char **tokens(char *str)
 {
-	char *token;
+	char *token = NULL;
 	char **holder;
 	char *strcopy = NULL;
 	size_t j, counter;
@@ -27,6 +27,7 @@ char **tokens(char *str)
 		j++;
 	}
 	holder[counter] = NULL;
+
 
 	free(strcopy);
 	strcopy = NULL;
