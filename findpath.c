@@ -18,11 +18,10 @@ char *findpath(char **command, char **env)
 			token = strtok(bins, ":");
 			for (j = 0; bins; j++)
 			{
-				token = strtok(NULL, ":");
 				len1 = _strlen(token);
 				len2 = _strlen(command[0]);
 
-				path = malloc(sizeof(char) * (len1 + len2));
+				path = malloc(sizeof(char) * (len1 + len2 + 2));
 				_strcat(path, token);
 				_strcat(path, "/");
 				_strcat(path, *command);
@@ -36,12 +35,10 @@ char *findpath(char **command, char **env)
 				{
 					free(path);
 				}
+				token = strtok(NULL, ":");
 			}
 		}
-		env++;
 		free(envdup);
-		envdup = NULL;
-		path = NULL;
 	}
 	return (*command);
 }
