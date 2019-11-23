@@ -34,6 +34,12 @@ char *findpath(char **command, char **env)
 				else
 				{
 					free(path);
+					if (fork() == 0)
+					{
+						execve(command[0], command, NULL);
+					}
+					else
+						wait(NULL);
 				}
 				token = strtok(NULL, ":");
 			}
