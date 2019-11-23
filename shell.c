@@ -45,7 +45,6 @@ int main(int ac, char **av, char **env)
 		else
 			wait(NULL);
 		free(buffer);
-		free(command);
 		buffer = NULL;
 	}
 	return (0);
