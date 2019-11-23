@@ -19,7 +19,7 @@ int main(int ac, char **av, char **env)
 	{
 		i = 0;
 		write(STDOUT_FILENO, "$ ", 2);
-		getline(&buffer, &bufflen, stdin);
+		getline(&buffer,&bufflen,stdin);
 		if(_strcmp(buffer, "\n") == 0)
 			continue;
 		for (; buffer[i] != '\0'; i++)
@@ -44,10 +44,8 @@ int main(int ac, char **av, char **env)
 			execve(new, command,  NULL);
 		else
 			wait(NULL);
-
 		free(buffer);
-		if (new == NULL)
-			free(new);
+		free(command);
 		buffer = NULL;
 	}
 	return (0);

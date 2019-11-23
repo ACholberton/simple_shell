@@ -1,8 +1,12 @@
 #include "holberton.h"
-
+/**
+ *tokens - will tokenize the arguments passed by the user
+ *@str: is the argument passed by the user
+ *Return: holder
+ */
 char **tokens(char *str)
 {
-	char *token = NULL;
+	char *token;
 	char **holder;
 	char *strcopy = NULL;
 	size_t j, counter;
@@ -27,7 +31,6 @@ char **tokens(char *str)
 		j++;
 	}
 	holder[counter] = NULL;
-
 
 	free(strcopy);
 	strcopy = NULL;
