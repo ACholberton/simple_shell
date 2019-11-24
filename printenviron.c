@@ -13,3 +13,12 @@ void printenvi(char **env)
 		i++;
 	}
 }
+
+void _env(char *str, char **env)
+{
+	if (_strcmp(str, "env") == 0)
+	{
+		printenvi(env);
+		free(str);
+	}
+}

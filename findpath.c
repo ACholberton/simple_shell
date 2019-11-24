@@ -9,7 +9,6 @@ int findpath(char **command, char **env)
 	{
 		envdup = _strdup(env[i]);
 		left = strtok(envdup, "=");
-
 		right = strtok(NULL, "=");
 		if (_strcmp(left, "PATH") == 0)
 		{
@@ -19,19 +18,12 @@ int findpath(char **command, char **env)
 			{
 				len1 = _strlen(token);
 				len2 = _strlen(command[0]);
-
 				path = malloc(sizeof(char) * (len1 + len2 + 2));
-				_strcat(path, token);
-				_strcat(path, "/");
-				_strcat(path, *command);
-				_strcat(path, "\0");
-
+				path = cat(path, token, command);
 				if (access(path, X_OK) == 0)
 				{
 					if (fork() == 0)
-					{
 						execve(path, command, NULL);
-					}
 					else
 						wait(NULL);
 					free(path);

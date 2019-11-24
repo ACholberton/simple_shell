@@ -1,19 +1,5 @@
 #include "holberton.h"
-/**
- *_strcmp - will compare two strings
- *@s1: is a string
- *@s2: is a string
- *Return: a string
- */
-int _strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
-}
+
 /**
  *_strdup - will return a pointer to a newly allocated space in memory
  *@str: is a string

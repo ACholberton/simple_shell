@@ -11,7 +11,7 @@ int main(int ac, char **av, char **env)
 	char *buffer = NULL;
 	char **command;
 	size_t bufflen = 0, i;
-	int status;
+	int status = 0;
 	(void) ac, (void) av;
 
 	while (1)
@@ -28,11 +28,7 @@ int main(int ac, char **av, char **env)
 			if (buffer[i] == '\n')
 				buffer[i] = '\0';
 		}
-		if (_strcmp(buffer, "env") == 0)
-		{
-			printenvi(env);
-			free(buffer);
-		}
+		_env(buffer, env);
 		if (_strcmp(buffer, "exit") == 0)
 		{
 			write(STDOUT_FILENO, "cya", 4);
