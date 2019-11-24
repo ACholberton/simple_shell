@@ -14,20 +14,20 @@ char **tokens(char *str)
 	j = 0, counter = 0;
 	strcopy = _strdup(str);
 
-	token = strtok(strcopy, "\t");
+	token = strtok(strcopy, " ");
 	while (token)
 	{
-		token = strtok(NULL, "\t");
+		token = strtok(NULL, " ");
 		counter++;
 	}
 
 	holder = malloc(sizeof(char *) * (counter + 1));
 
-	token = strtok(str, "\t");
+	token = strtok(str, " ");
 	while (token)
 	{
 		holder[j] = token;
-		token = strtok(NULL, "\t");
+		token = strtok(NULL, " ");
 		j++;
 	}
 	holder[counter] = NULL;

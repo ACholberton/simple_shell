@@ -21,8 +21,8 @@ int main(int ac, char **av, char **env)
 		getline(&buffer, &bufflen, stdin);
 		if (_strcmp(buffer, "\n") == 0)
 			continue;
-		if (_strcmp(buffer, "\t") == 0)
-			continue;
+/*		if (_strcmp(buffer, "\t") == 0)
+		continue;*/
 		for (; buffer[i] != '\0'; i++)
 		{
 			if (buffer[i] == '\n')
