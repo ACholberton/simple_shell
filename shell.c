@@ -10,17 +10,16 @@ int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL;
 	char **command;
-	char *new;
 	size_t bufflen = 0, i;
-	int status = 1;
+	int status;
 	(void) ac, (void) av;
 
-	while (status)
+	while (1)
 	{
 		i = 0;
 		write(STDOUT_FILENO, "$ ", 2);
-		getline(&buffer,&bufflen,stdin);
-		if(_strcmp(buffer, "\n") == 0)
+		getline(&buffer, &bufflen, stdin);
+		if (_strcmp(buffer, "\n") == 0)
 			continue;
 		for (; buffer[i] != '\0'; i++)
 		{
@@ -30,6 +29,7 @@ int main(int ac, char **av, char **env)
 		if (_strcmp(buffer, "env") == 0)
 		{
 			printenvi(env);
+			free(buffer);
 		}
 		if (_strcmp(buffer, "exit") == 0)
 		{
@@ -39,11 +39,14 @@ int main(int ac, char **av, char **env)
 			free(buffer);
 		}
 		command = tokens(buffer);
-		new = findpath(command, env);
-		if (fork() == 0)
-			execve(new, command,  NULL);
-		else
-			wait(NULL);
+		status = findpath(command, env);
+		if (status == 1)
+		{
+			if (fork() == 0)
+				execve(command[0], command,  NULL);
+			else
+				wait(NULL);
+		}
 		free(buffer);
 		buffer = NULL;
 	}
