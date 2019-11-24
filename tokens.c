@@ -33,7 +33,6 @@ char **tokens(char *str)
 	holder[counter] = NULL;
 
 	free(strcopy);
-	free(str);
 	strcopy = NULL;
 
 	return (holder);
