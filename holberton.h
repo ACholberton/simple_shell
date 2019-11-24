@@ -17,6 +17,6 @@ char *_strdup(char *str);
 void printenvi(char **env);
 char **tokens(char *str);
 char *_strcat(char *dest, char *src);
-char *findpath(char **command, char **env);
+int findpath(char **command, char **env);
 
 #endif
