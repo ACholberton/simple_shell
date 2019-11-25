@@ -29,7 +29,10 @@ int findpath(char **command, char **env)
 				if (access(path, X_OK) == 0)
 				{
 					if (fork() == 0)
+					{
 						execve(path, command, NULL);
+						free(path);
+					}
 					else
 						wait(NULL);
 					free(path);
@@ -42,6 +45,5 @@ int findpath(char **command, char **env)
 		}
 		free(envdup);
 	}
-/*	free(envdup);*/
 	return (1);
 }

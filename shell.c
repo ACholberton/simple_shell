@@ -1,4 +1,4 @@
-#include "holberton.h"
+  #include "holberton.h"
 /**
  *main - is the entry point
  *@ac:  is the number of arguments passed
@@ -11,18 +11,27 @@ int main(int ac, char **av, char **env)
 	char *buffer = NULL;
 	char **command = NULL;
 	size_t bufflen = 0;
-	int status = 0, i, tally;
+	ssize_t loop = 0;
+	int status = 0, i = 0, tally;
 	(void) ac, (void) av;
 
-/*	if (isatty(STDIN_FILENO))
-	write(STDOUT_FILENO, "$ ", 2);*/
-	while (1)
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "$ ", 2);
+	while ((loop = getline(&buffer, &bufflen, stdin)))
 	{
 		i = 0;
-		write(STDOUT_FILENO, "$ ", 2);
-		getline(&buffer, &bufflen, stdin);
+		if (loop == EOF)
+		{
+			write(STDOUT_FILENO, "$ ", 2);
+			write(STDOUT_FILENO, "\n", 2);
+			free(buffer);
+			break;
+		}
 		if (_strcmp(buffer, "\n") == 0)
+		{
+			write(STDOUT_FILENO, "$ ", 2);
 			continue;
+		}
 		if (_strcmp(buffer, "\t") == 0)
 			continue;
 		for (; buffer[i] != '\0'; i++)
@@ -47,6 +56,8 @@ int main(int ac, char **av, char **env)
 			if (fork() == 0)
 			{
 				execve(command[0], command, NULL);
+				free(command);
+				free(buffer);
 				exit(EXIT_SUCCESS);
 			}
 			else
@@ -58,6 +69,8 @@ int main(int ac, char **av, char **env)
 		free(buffer);
 		buffer = NULL;
 		tally++;
+		if (isatty(STDIN_FILENO))
+		    write(STDOUT_FILENO, "$ ", 2);
 	}
 	return (0);
 }

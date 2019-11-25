@@ -13,17 +13,16 @@ char **tokens(char *str)
 
 	j = 0, counter = 0;
 	strcopy = _strdup(str);
-
 	token = strtok(strcopy, " ");
 	while (token)
 	{
 		token = strtok(NULL, " ");
 		counter++;
 	}
-
 	holder = malloc(sizeof(char *) * (counter + 1));
 	if (holder == NULL)
 		free(holder);
+	holder[0] = "\0";
 	token = strtok(str, " ");
 	while (token)
 	{
@@ -32,9 +31,7 @@ char **tokens(char *str)
 		j++;
 	}
 	holder[counter] = NULL;
-
 	free(strcopy);
 	strcopy = NULL;
-
 	return (holder);
 }
