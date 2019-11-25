@@ -43,6 +43,7 @@ int main(int ac, char **av, char **env)
 			if (fork() == 0)
 				execve(command[0], command,  NULL);
 			else
+				perror(*command);
 				wait(NULL);
 		}
 		free(buffer);
