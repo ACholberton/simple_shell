@@ -33,15 +33,18 @@ int main(int ac, char **av, char **env)
 		{
 			write(STDOUT_FILENO, "cya", 4);
 			_putchar('\n');
-			exit(EXIT_SUCCESS);
 			free(buffer);
+			exit(EXIT_SUCCESS);
 		}
 		command = tokens(buffer);
 		status = findpath(command, env);
 		if (status == 1)
 		{
 			if (fork() == 0)
+			{
 				execve(command[0], command,  NULL);
+				exit(EXIT_SUCCESS);
+			}
 			else
 /*				perror(*command);*/
 				wait(NULL);
