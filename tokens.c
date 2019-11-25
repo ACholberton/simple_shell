@@ -7,7 +7,7 @@
 char **tokens(char *str)
 {
 	char *token;
-	char **holder;
+	char **holder = NULL;
 	char *strcopy = NULL;
 	size_t j, counter;
 
@@ -22,7 +22,8 @@ char **tokens(char *str)
 	}
 
 	holder = malloc(sizeof(char *) * (counter + 1));
-
+	if (holder == NULL)
+		free(holder);
 	token = strtok(str, " ");
 	while (token)
 	{

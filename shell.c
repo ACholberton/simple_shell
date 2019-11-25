@@ -9,11 +9,13 @@
 int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL;
-	char **command;
+	char **command = NULL;
 	size_t bufflen = 0;
 	int status = 0, i, tally;
 	(void) ac, (void) av;
 
+/*	if (isatty(STDIN_FILENO))
+	write(STDOUT_FILENO, "$ ", 2);*/
 	while (1)
 	{
 		i = 0;
@@ -36,18 +38,23 @@ int main(int ac, char **av, char **env)
 		}
 
 		command = tokens(buffer);
+		if (command == NULL)
+			free (command);
+
 		status = findpath(command, env);
 		if (status == 1)
 		{
 			if (fork() == 0)
 			{
-				execve(command[0], command,  env);
+				execve(command[0], command, NULL);
 				exit(EXIT_SUCCESS);
 			}
 			else
-/*				perror(*command);*/
+			{
 				wait(NULL);
+			}
 		}
+		free(command);
 		free(buffer);
 		buffer = NULL;
 		tally++;

@@ -18,12 +18,13 @@ int findpath(char **command, char **env)
 		if (_strcmp(left, "PATH") == 0)
 		{
 			bins = right;
-			token = strtok(bins, ":");
+			token = strtok(bins, ": \t");
 			for (j = 0; token; j++)
 			{
 				len1 = _strlen(token);
 				len2 = _strlen(command[0]);
 				path = malloc(sizeof(char) * (len1 + len2 + 2));
+				path[0] = '\0';
 				path = cat(path, token, command);
 				if (access(path, X_OK) == 0)
 				{
@@ -35,11 +36,12 @@ int findpath(char **command, char **env)
 					free(envdup);
 					return (0);
 				}
-				token = strtok(NULL, ":");
+				token = strtok(NULL, ": \t");
 				free(path);
 			}
 		}
 		free(envdup);
 	}
+/*	free(envdup);*/
 	return (1);
 }
