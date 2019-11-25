@@ -1,0 +1,70 @@
+.TH hsh 1 "2019-11-24" "v1.0" "shell man page"
+
+.SH NAME
+hsh
+
+.SH SYNOPSIS
+Is a command-line interpreter or shell that provides a command line user interface. 
+
+
+.SH DESCRIPTION
+The shell is a command line user interface that executes command input made by the user. Takes string argument from user input and replaces the \n with \0.
+This makes the system recognize where and how many arguments have been entered, The system uses the function strtok() to parse the command line. Then the system looks through the enviroment a directory containing an executable program.
+
+
+.SH FORMAT
+
+Written in the C programming language
+
+.SH COMMANDS
+
+ls
+
+List all files in the current working directory.
+
+pwd
+
+prints the full path of the working directory.
+
+echo
+
+prints text input by the user.
+
+touch
+
+Creates a text file.
+
+date
+
+prints the current date and time stores in you system.
+
+env
+
+prints the enviroment.
+
+exit
+
+exits the shell.
+
+.SH RETURN VALUE
+
+returns 0
+
+.SH EXAMPLE
+
+print the current working directory and set a new line that waits for the next command.
+
+$ pwd
+
+/home/users/Holberton/simple_shell
+
+$
+
+.SH BUGS
+
+accesing a directory after executing the shell ends in a segmentation fault. Exit function kills child processes one by one before terminating parent process.
+
+.SH AUTHORS
+Andres Cheung, Nicholas Uchida
+.SH SEE ALSO
+The SHELL.
