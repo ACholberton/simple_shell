@@ -1,5 +1,10 @@
 #include "holberton.h"
-
+/**
+ *findpath -  gets the complete full PATH of the commands
+ *@command: is the input by the user
+ *@env: is the environment to find path
+ *Return: status of 1 or 0
+ */
 int findpath(char **command, char **env)
 {
 	char *left = NULL, *right = NULL, *bins, *token, *envdup, *path = NULL;
