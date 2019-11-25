@@ -29,21 +29,19 @@ int main(int ac, char **av, char **env)
 				buffer[i] = '\0';
 		}
 		_env(buffer, env);
-/*		if (_strcmp(buffer, "exit") == 0)
+		if (_strcmp(buffer, "exit") == 0)
 		{
-			write(STDOUT_FILENO, "cya", 4);
-			_putchar('\n');
 			free(buffer);
 			exit(EXIT_SUCCESS);
 		}
-*/
+
 		command = tokens(buffer);
 		status = findpath(command, env);
 		if (status == 1)
 		{
 			if (fork() == 0)
 			{
-				execve(command[0], command,  NULL);
+				execve(command[0], command,  env);
 				exit(EXIT_SUCCESS);
 			}
 			else
