@@ -10,8 +10,8 @@ int main(int ac, char **av, char **env)
 {
 	char *buffer = NULL;
 	char **command;
-	size_t bufflen = 0, i;
-	int status = 0;
+	size_t bufflen = 0;
+	int status = 0, i, tally;
 	(void) ac, (void) av;
 
 	while (1)
@@ -21,8 +21,8 @@ int main(int ac, char **av, char **env)
 		getline(&buffer, &bufflen, stdin);
 		if (_strcmp(buffer, "\n") == 0)
 			continue;
-/*		if (_strcmp(buffer, "\t") == 0)
-		continue;*/
+		if (_strcmp(buffer, "\t") == 0)
+			continue;
 		for (; buffer[i] != '\0'; i++)
 		{
 			if (buffer[i] == '\n')
@@ -43,11 +43,12 @@ int main(int ac, char **av, char **env)
 			if (fork() == 0)
 				execve(command[0], command,  NULL);
 			else
-				perror(*command);
+/*				perror(*command);*/
 				wait(NULL);
 		}
 		free(buffer);
 		buffer = NULL;
+		tally++;
 	}
 	return (0);
 }
