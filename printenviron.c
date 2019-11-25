@@ -1,5 +1,9 @@
 #include "holberton.h"
-
+/**
+ *printenvi - is a built-in that will print the enviroment
+ *@env: is the enviroment
+ *Return: void
+ */
 void printenvi(char **env)
 {
 	size_t i = 0;
@@ -13,7 +17,12 @@ void printenvi(char **env)
 		i++;
 	}
 }
-
+/**
+ *_env - is a helper function that gets the env
+ *@str: prints the env
+ *@env: gets the env
+ *Return: void
+ */
 void _env(char *str, char **env)
 {
 	if (_strcmp(str, "env") == 0)
