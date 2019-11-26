@@ -20,5 +20,5 @@ char *_strcat(char *dest, char *src);
 int findpath(char **command, char **env);
 void _env(char *str, char **env);
 char *cat(char *str, char *token, char **command);
-
+void exitshell(char *buffer);
 #endif
