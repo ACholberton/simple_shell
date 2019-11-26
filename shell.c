@@ -1,4 +1,4 @@
-  #include "holberton.h"
+#include "holberton.h"
 /**
  *main - is the entry point
  *@ac:  is the number of arguments passed
@@ -22,8 +22,7 @@ int main(int ac, char **av, char **env)
 		i = 0;
 		if (loop == EOF)
 		{
-			write(STDOUT_FILENO, "$ ", 2);
-			write(STDOUT_FILENO, "\n", 2);
+			write(STDOUT_FILENO, "\n", 1);
 			free(buffer);
 			break;
 		}
@@ -40,12 +39,7 @@ int main(int ac, char **av, char **env)
 				buffer[i] = '\0';
 		}
 		_env(buffer, env);
-		if (_strcmp(buffer, "exit") == 0)
-		{
-			free(buffer);
-			exit(EXIT_SUCCESS);
-		}
-
+		exitshell(buffer);
 		command = tokens(buffer);
 		if (command == NULL)
 			free (command);
@@ -70,7 +64,7 @@ int main(int ac, char **av, char **env)
 		buffer = NULL;
 		tally++;
 		if (isatty(STDIN_FILENO))
-		    write(STDOUT_FILENO, "$ ", 2);
+			write(STDOUT_FILENO, "$ ", 2);
 	}
 	return (0);
 }
