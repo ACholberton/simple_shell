@@ -21,4 +21,5 @@ int findpath(char **command, char **env);
 void _env(char *str, char **env);
 char *cat(char *str, char *token, char **command);
 void exitshell(char *buffer);
+void execute(char **command, char *buffer);
 #endif
