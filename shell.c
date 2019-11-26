@@ -47,20 +47,6 @@ int main(int ac, char **av, char **env)
 		status = findpath(command, env);
 		if (status == 1)
 			execute(command, buffer);
-/*		{
-			if (fork() == 0)
-			{
-				execve(command[0], command, NULL);
-				free(command);
-				free(buffer);
-				exit(EXIT_SUCCESS);
-			}
-			else
-			{
-				wait(NULL);
-			}
-		}
-*/
 		free(command);
 		free(buffer);
 		buffer = NULL;
