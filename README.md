@@ -1,4 +1,4 @@
-# A Simple Shell
+# A Simple Shell :shell:
 
 ## Description
 
@@ -71,8 +71,9 @@ file1  file2  file3  file4
 
 ```
 
-## Examples
+## Flowchart
 
+![Shell Flowchart](https://i.ibb.co/P9mYL5R/shellflowchart-1.jpg)
 
 
 ## Authors
